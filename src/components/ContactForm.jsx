@@ -3,9 +3,9 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import { nanoid } from '@reduxjs/toolkit';
 
-import { addContact } from 'redux/contactSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { contactsSelector } from 'redux/selectors';
+import { createNewContact } from 'redux/apiRequests';
 
 const ContactForm = () => {
   const dispatch = useDispatch();
@@ -26,19 +26,19 @@ const ContactForm = () => {
   const onAddContacts = newContact => {
     if (newContact.name !== '' && newContact.number !== '') {
       onCheckDublicate(newContact);
-      dispatch(addContact(newContact));
+      // dispatch(addContact(newContact));
     }
   };
 
   const onFormHandler = e => {
     e.preventDefault();
-
     const contact = {
       id: nanoid(),
       name,
       number,
     };
     onAddContacts(contact);
+    dispatch(createNewContact(contact));
     setName('');
     setNumber('');
   };
