@@ -16,14 +16,10 @@ const contactSlice = createSlice({
   name: 'contacts',
   initialState,
   extraReducers: {
-    // [createNewThunk.pending]: state => {
-    //   console.log('state: ', state);
-    //   state.contacts.isLoading = true;
-    // },
+   
     [createNewThunk.fulfilled]: (state, { payload }) => {
-      console.log('state: ', state);
-      console.log('payload', payload);
-      state.contacts.items.push(payload);
+     
+      state.contacts.items.push(payload.data);
     },
     [getAllThunk.pending]: state => {
       state.contacts.isLoading = true;

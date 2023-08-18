@@ -9,5 +9,6 @@ export const getAllContacts = async () => {
 
 export const createNewContact = body => {
   const response = axios.post('/getAll', body);
-  return response.data;
+  console.log(response);
+  return response;
 };
