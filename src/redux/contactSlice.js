@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { createNewContact, getAllContacts } from './apiRequests';
+import { createNewContact, deleteContact, getAllContacts } from './apiRequests';
 import { initialState } from './initialState';
 
 export const getAllThunk = createAsyncThunk(
@@ -12,13 +12,19 @@ export const createNewThunk = createAsyncThunk('contacts/create', body => {
   return createNewContact(body);
 });
 
+export const deleteThunk = createAsyncThunk('contacts/delete', id => {
+  return deleteContact(id);
+});
+
 const contactSlice = createSlice({
   name: 'contacts',
   initialState,
   extraReducers: {
-   
+    [deleteThunk.fulfilled]: (state, { payload }) => {
+      const filteredArr = state.contacts.items.filter(item =>item.id !== payload)
+      state.contacts.items = filteredArr;
+    },
     [createNewThunk.fulfilled]: (state, { payload }) => {
-     
       state.contacts.items.push(payload.data);
     },
     [getAllThunk.pending]: state => {

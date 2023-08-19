@@ -26,6 +26,7 @@ const ContactForm = () => {
   const onAddContacts = newContact => {
     if (newContact.name !== '' && newContact.number !== '') {
       onCheckDublicate(newContact);
+      dispatch(createNewThunk(newContact));
       // dispatch(addContact(newContact));
     }
   };
@@ -38,7 +39,6 @@ const ContactForm = () => {
       number,
     };
     onAddContacts(contact);
-    dispatch(createNewThunk(contact));
     setName('');
     setNumber('');
   };

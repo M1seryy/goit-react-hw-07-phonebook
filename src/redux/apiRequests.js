@@ -12,3 +12,8 @@ export const createNewContact = body => {
   console.log(response);
   return response;
 };
+export const deleteContact = id => {
+ axios.delete(`/getAll/${id}`);
+  console.log(id);
+  return id
+};

@@ -9,7 +9,7 @@ import {
   filterSelector,
   loadingSelector,
 } from 'redux/selectors';
-import { getAllThunk } from 'redux/contactSlice';
+import { deleteThunk, getAllThunk } from 'redux/contactSlice';
 
 const ContactList = () => {
   const filter = useSelector(filterSelector);
@@ -18,7 +18,7 @@ const ContactList = () => {
   const dispatch = useDispatch();
 
   const onDeleteItem = id => {
-    // dispatch(deleteContact(id));
+    dispatch(deleteThunk(id))
   };
 
   useEffect(() => {
