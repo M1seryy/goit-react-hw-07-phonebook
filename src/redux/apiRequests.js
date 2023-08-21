@@ -13,7 +13,7 @@ export const createNewContact = body => {
   return response;
 };
 export const deleteContact = id => {
- axios.delete(`/getAll/${id}`);
+  axios.delete(`/getAll/${id}`);
   console.log(id);
-  return id
+  return id;
 };

@@ -15,7 +15,7 @@ const ContactForm = () => {
 
   const onCheckDublicate = obj => {
     contacts.map(item => {
-      if (item.name === obj.name && item.number === obj.number) {
+      if (item.name === obj.name) {
         alert(`${obj.name} is already in contact list`);
         dispatch(contacts.filter(contact => contact.name !== obj.name));
       }
@@ -27,7 +27,6 @@ const ContactForm = () => {
     if (newContact.name !== '' && newContact.number !== '') {
       onCheckDublicate(newContact);
       dispatch(createNewThunk(newContact));
-      // dispatch(addContact(newContact));
     }
   };
 
